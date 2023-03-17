@@ -28,11 +28,32 @@ What we observe is that there was an intital peak in the late 60s early 70s in t
 
 ![Alt text](junk/Artists%20per%20year.png) ![Alt text](junk/Unique%20Song%20Count.png)
 
-## Follow Ups
+## Results
+With the Twitter Sentiment Roberta model we see that there is a gradual increase in negative from 1958-2022. Average increase of 3.3% in negativive sentiment with each passing decade. 
+
+![Alt text](junk/Moving%20AVG%20Pos%20and%20Neg.png)
+
+| Decade | 2 Sample Z Test (P) | Reject null? |
+| :----: | :-----------------: | :----------: |
+|60 vs 70| 0.007|Yes|
+|70 vs 80| 0.09|No|
+|80 vs 90| 0.03|Yes|
+|90 vs 00| 0.15|No|
+|00 vs 10| 0.51|No|
+|10 vs 20| 6e-11|Yes|
+
+
+The obvious next challange is understanding "How" this change has come about and that is a much more difficult question to answer. It doesn't take a much imagination to come up with some probably hypothesis'; our tolerance to explicit content has changed or the emergence and passing of genres (nu-metal, hip-hop ect.).
+I attempted to answer the question with looking at genres of music and how their prevelence in popular music has changed or how the sentiment within genres has changed. 
+
+The issue here is that genre is far more nuanced than I initially thought. When genre data was layered in from the Spotify API it showed that there were approximately 600 genres listed and no meaningful trend was going to be visible without further aggregation. As such this has been pushed out to follow up work for now.
+
+## Follow Up Work
 I won't delve into everything here but I will highlight a few points of interest and concern should you wish to recreate this project. 
 
 1. Lyrics API:
     - There are multiple free to use lyric APIs available. I chose lyric genius but as you might expect with some free services the quality is not comprehensive. There were 30444 unique songs featured in the Billboard dataset, of which it was possible to retrieve around 85% of the lyrics. However, on closer inspection the API occaisionally provides the entire text of a novel instead on lyrics. It is particularly fond of James Joyce for some bizarre reason. There may be some error in how I queried the API but I couldn't find the bug at the time. So this reduced the size of the data set further.
 2. Transfer learning using the ROBERTA model:
     - There is room for optimisation here. For sentiment analysis I used a Twitter ROBERTA Base Sentiment from Hugging Face. At the time when I was completing this project I was pretty new to Deep Learning. When it came to sentiment classsifcation the ROBERTA model struggled to analyse all 26K songs. The root cause of the faults could not be found and requires a deeper dive into the construction of the Twitter model. In the end it was possible to retrieve the sentiment of only 17K songs.
-3.   
+3. Consolidation of Genres:
+    - To gain a better understanding of why we see a gradual increase in negative sentiment in music one hypothess is to look at the trends at the genre level. Spotify genre data was pulled and joined to the popular music dataset but the difficulty is the range of genres. A single artist can be labelled with up to 15 genres and there were a approximately 600 unique genres available. With this it becomes difficult to pull out isolated trends so it was decided to agrregate genres under broader labels such as "hip-hop", "rap", "blues" ect. This continues to be a work in progress.
