@@ -49,7 +49,6 @@ I attempted to answer the question with looking at genres of music and how their
 The issue here is that genre is far more nuanced than I initially thought. When genre data was layered in from the Spotify API it showed that there were approximately 600 genres listed and no meaningful trend was going to be visible without further aggregation. As such this has been pushed out to follow up work for now.
 
 ## Follow Up Work
-I won't delve into everything here but I will highlight a few points of interest and concern should you wish to recreate this project. 
 
 1. Lyrics API:
     - There are multiple free to use lyric APIs available. I chose lyric genius but as you might expect with some free services the quality is not comprehensive. There were 30444 unique songs featured in the Billboard dataset, of which it was possible to retrieve around 85% of the lyrics. However, on closer inspection the API occaisionally provides the entire text of a novel instead on lyrics. It is particularly fond of James Joyce for some bizarre reason. There may be some error in how I queried the API but I couldn't find the bug at the time. So this reduced the size of the data set further.
